@@ -1,31 +1,22 @@
-describe('Cadastro de usuário', () => {
+describe("Cadastro de usuário", () => {
 
-    it('cadastro', () => {
+ beforeEach(() => {
+    
+  cy.visit("/cadastrarusuarios");
+});
 
-        cy.visit('https://front.serverest.dev/cadastrarusuarios')
 
-        cy.get('[data-testid="nome"]')
-            .type('Maria Souza')
+  it("deve cadastrar um novo usuário com sucesso", () => {
+   cy.fixture("usuario").then((usuarioFixture) => {
+    const usuario = {
+  nome: usuarioFixture.nome,
+  email: `${usuarioFixture.emailPrefixo}${Date.now()}@email.com`,
+  senha: usuarioFixture.senha
+};
 
-        cy.get('[data-testid="email"]')
-            .type('maria@email.com')
+    cy.cadastrarUsuario(usuario);
 
-        cy.get('[data-testid="password"]')
-            .type('123456')
-
-        cy.get('[data-testid="checkbox"]')
-            .check()
-
-        cy.get('[data-testid="cadastrar"]')
-            .click()
-
-        cy.wait(5000)
-
-        cy.get('body')
-            .should('contain', 'Cadastro realizado com sucesso')
-
-        cy.wait(2000)
-
-    })
-
-})
+    cy.contains("Cadastro realizado com sucesso").should("be.visible");
+  });
+});
+});
