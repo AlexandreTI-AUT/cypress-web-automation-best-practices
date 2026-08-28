@@ -19,8 +19,11 @@ describe('Cadastro de usuário', () => {
         cy.get('[data-testid="cadastrar"]')
             .click()
 
+
         cy.contains('Cadastro realizado com sucesso')
             .should('be.visible')
+
+
 
     })
 
