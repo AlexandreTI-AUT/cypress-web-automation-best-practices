@@ -1,17 +1,22 @@
+import { faker } from '@faker-js/faker';
+
 describe('Cadastro de usuário', () => {
 
     it('deve cadastrar um novo usuário com sucesso', () => {
+        const nome = faker.person.fullName();
+        const email = faker.internet.email();
+        const senha = faker.internet.password();
 
         cy.visit('https://front.serverest.dev/cadastrarusuarios')
 
         cy.get('[data-testid="nome"]')
-            .type('João da Silva')
+            .type(nome)
 
         cy.get('[data-testid="email"]')
-            .type('joao@email.com')
+            .type(email)
 
         cy.get('[data-testid="password"]')
-            .type('123456')
+            .type(senha)
 
         cy.get('[data-testid="checkbox"]')
             .check()

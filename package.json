@@ -9,6 +9,10 @@
   "keywords": [],
   "type": "commonjs",
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "cypress": "^15.20.1"
+  },
+  "allowScripts": {
+    "cypress@15.20.1": true
   }
 }
